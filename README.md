@@ -3,7 +3,7 @@
 ## Description
 
 On a retail website, the following discounts apply:
-1. If the user is an employee of the store, he gets a 30% discount
+1. If the user is has an Gold Card of the store, he gets a 30% discount
 2. If the user has silver card of the store, he gets a 20% discount
 3. If the user is an affiliate of the store, he gets a 10% discount
 4. If the user has been a customer for over 2 years, he gets a 5% discount.
