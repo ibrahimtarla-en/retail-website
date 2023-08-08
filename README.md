@@ -101,5 +101,5 @@ Example request
 The response is net payable amount.
 
 ```json
-540.0
+740.0
 ```
