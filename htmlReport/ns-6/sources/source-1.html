@@ -1,0 +1,131 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > DiscountServiceImpl</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.store.retail.services</a>
+</div>
+
+<h1>Coverage Summary for Class: DiscountServiceImpl (com.store.retail.services)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">DiscountServiceImpl</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (10/10)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.store.retail.services;
+&nbsp;
+&nbsp;import com.store.retail.mapper.DiscountMapper;
+&nbsp;import com.store.retail.models.Bill;
+&nbsp;import com.store.retail.models.ProductType;
+&nbsp;import com.store.retail.models.User;
+&nbsp;
+&nbsp;import java.math.BigDecimal;
+&nbsp;
+<b class="fc">&nbsp;public class DiscountServiceImpl implements DiscountService {</b>
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public BigDecimal discountCalculation(User user, Bill bill) {
+<b class="fc">&nbsp;        DiscountMapper helper = new DiscountMapper();</b>
+&nbsp;
+<b class="fc">&nbsp;        BigDecimal totalAmount = helper.calculateTotal(bill.getProductList());</b>
+<b class="fc">&nbsp;        BigDecimal phoneAmount = helper.calculateTotalPerType(bill.getProductList(), ProductType.PHONE);</b>
+<b class="fc">&nbsp;        BigDecimal nonPhoneAmount = totalAmount.subtract(phoneAmount);</b>
+<b class="fc">&nbsp;        BigDecimal userDiscount = helper.getUserDiscount(user);</b>
+<b class="fc">&nbsp;        BigDecimal billsDiscount = helper.calculateBillsDiscount(totalAmount, new BigDecimal(200), new BigDecimal(5));</b>
+<b class="fc">&nbsp;        if (nonPhoneAmount.compareTo(BigDecimal.ZERO) &gt; 0) {</b>
+<b class="fc">&nbsp;            nonPhoneAmount = helper.calculateDiscount(nonPhoneAmount, userDiscount);</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        return (phoneAmount.add(nonPhoneAmount).subtract(billsDiscount));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-08-08 10:54</div>
+</div>
+</body>
+</html>
